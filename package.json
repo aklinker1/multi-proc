@@ -1,0 +1,35 @@
+{
+  "name": "multi-proc",
+  "version": "0.1.0",
+  "description": "Simple package to allow running multiple node packages at the same time.",
+  "main": "index.js",
+  "repository": "git+https://github.com/aklinker1/multi-proc.git",
+  "author": "Aaron Klinker <aaronklinker1@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "./index.js",
+    "build": "yarn compile && yarn lint",
+    "compile": "rm -rf lib/* && echo \"export default '$(node -p require\\(\\'./package.json\\'\\).version)';\" > src/version.ts && tsc",
+    "lint": "tslint -p .",
+    "publish": "",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "example": "yarn start --config example/config.multi-proc.json start"
+  },
+  "bin": "./index.js",
+  "devDependencies": {
+    "@types/inquirer": "^0.0.43",
+    "@types/jest": "^23.3.11",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.1"
+  }
+}

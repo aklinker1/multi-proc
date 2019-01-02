@@ -1,0 +1,12 @@
+[
+  {
+    "tag": "One",
+    "color": "BG_RED",
+    "command": "./example/process1"
+  },
+  {
+    "tag": "2",
+    "color": "BG_BLUE",
+    "command": "node example/process2.js"
+  }
+]
