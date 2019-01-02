@@ -16,8 +16,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "example": "yarn start --config example/config.multi-proc.json start",
-    "prepublish": "yarn build && git commit -am \"Updated build directory\"; git push;"
+    "example": "yarn start --config example/config.multi-proc.json start"
   },
   "bin": "./index.js",
   "devDependencies": {
