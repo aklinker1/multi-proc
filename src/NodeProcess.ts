@@ -1,15 +1,29 @@
-import { spawn } from 'child_process';
-import { InputNodeProcess } from './Actions';
+import { ChildProcess, spawn } from 'child_process';
+import { join } from 'path';
+import Actions, { InputNodeProcess } from './Actions';
 import { Color, color as asColor } from './Colors';
 
 export default class NodeProcess {
 
   public static start = async (proc: NodeProcess): Promise<void> => {
     return new Promise((resolve, reject) => {
-      const commandArray = proc.command.split(' ');
-      const initialCommand = commandArray.shift()!;
-      const spawned = spawn(initialCommand, commandArray);
-      proc.output(asColor(proc.command, Color.BOLD));
+      const spawnOptions = { shell: proc.command.search(/(&&|;)/) >= 0, cwd: proc.directory };
+      const startMessageArray = [`${asColor('Starting: ', Color.BOLD)}${proc.command}`];
+      if (spawnOptions.cwd) {
+        startMessageArray.push(asColor(`in ${spawnOptions.cwd}`, Color.DIM));
+      }
+      if (spawnOptions.shell) {
+        startMessageArray.push(asColor(`(as a shell)`, Color.DIM));
+      }
+      proc.output(startMessageArray.join(' '));
+      let spawned: ChildProcess;
+      if (spawnOptions.shell) {
+        spawned = spawn(proc.command, spawnOptions);
+      } else {
+        const commandArray = proc.command.split(' ');
+        const initialCommand = commandArray.shift()!;
+        spawned = spawn(initialCommand, commandArray, spawnOptions);
+      }
       spawned.addListener('close', () => resolve());
       spawned.addListener('disconnect', () => resolve());
       spawned.addListener('exit', () => {
@@ -18,17 +32,29 @@ export default class NodeProcess {
       });
       spawned.addListener('err', (err: Error) => reject(err));
       spawned.stdout.addListener('data', (chunk: any) => {
-        proc.output(chunk.toString());
+        if (!proc.filter || proc.filter.exec(proc.tag)) {
+          proc.output(chunk.toString());
+        }
       });
     });
   }
 
   public tag: string;
   public command: string;
+  public filter?: RegExp;
+  public directory?: string;
 
-  constructor(inputProc: InputNodeProcess, tagWidth: number) {
+  constructor(inputProc: InputNodeProcess, tagWidth: number, filter?: RegExp) {
     this.tag = this.getTag(inputProc, tagWidth);
     this.command = inputProc.command;
+    this.filter = filter;
+    if (inputProc.directory) {
+      if (inputProc.directory.startsWith('/')) {
+        this.directory = inputProc.directory;
+      } else {
+        this.directory = join(Actions.pwd, inputProc.directory);
+      }
+    }
   }
 
   public output = (message: string): void => {
@@ -41,7 +67,7 @@ export default class NodeProcess {
       tag += ' ';
     }
     if (!proc.color) {
-      throw new Error(`"process.color" is required`);
+      throw new Error(`'process.color' is required`);
     }
     // @ts-ignore
     const color = Color[proc.color.toUpperCase()];

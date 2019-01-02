@@ -8,18 +8,20 @@ export interface InputNodeProcess {
   tag: string;
   color: Color;
   command: string;
+  directory?: string;
 }
 
 export default class Actions {
 
   public static pwd = execSync('pwd', { encoding: 'utf8' }).trim();
 
-  public static init = (CLI: CommanderStatic) => (): void => {
+  public static init = (CLI: CommanderStatic): void => {
     console.log('Initializing');
   }
 
-  public static start = (CLI: CommanderStatic) => async (): Promise<void> => {
-    const config = Actions.readConfig(CLI.config || 'multi-proc.config.js');
+  public static start = (CLI: CommanderStatic) => async (commandOptions: any): Promise<void> => {
+    console.log(CLI.config, commandOptions.filter);
+    const config = Actions.readConfig(CLI.config || 'multi-proc.config.js', commandOptions.filter);
     console.log(color(`${config.length} Process${config.length === 1 ? '' : 'es'} in ${CLI.config}`, Color.BOLD));
     console.log(`Working directory: ${color(`[${Actions.pwd}]`, Color.DIM)}\n`);
 
@@ -31,7 +33,7 @@ export default class Actions {
     console.log();
   }
 
-  public static readConfig = (configFile: string): NodeProcess[] => {
+  public static readConfig = (configFile: string, filter: string | undefined): NodeProcess[] => {
     const procs = require(join(Actions.pwd, configFile)) as InputNodeProcess[];
     let maxTagWidth = 0;
     for (const proc of procs) {
@@ -39,7 +41,7 @@ export default class Actions {
         maxTagWidth = proc.tag.length;
       }
     }
-    return procs.map((proc) => new NodeProcess(proc, maxTagWidth));
+    return procs.map((proc) => new NodeProcess(proc, maxTagWidth, filter ? new RegExp(filter) : undefined));
   }
 
 }

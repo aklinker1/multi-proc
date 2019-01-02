@@ -1,4 +1,4 @@
-console.log('Process 1 output...');
+console.log('Process 2 - 0s');
 setTimeout(() => {
   console.log('Process 1 - 1s');
 }, 1000);
