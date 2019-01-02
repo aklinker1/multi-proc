@@ -1,6 +1,6 @@
 # multi-proc
 
-<img width="597" alt="screen shot 2019-01-01 at 11 20 11 pm" src="https://user-images.githubusercontent.com/10101283/50580388-e5927f80-0e1b-11e9-804c-3687cad77d2a.png">
+![jan-01-2019 23-23-42](https://user-images.githubusercontent.com/10101283/50580422-69e50280-0e1c-11e9-8ffc-6402cb05afe1.gif)
 
 Run multiple command line operations at the same time. For example, if you want to run your Express backend alongside the Vue frontend, you could use this package to run both from the same terminal instance. 
 
