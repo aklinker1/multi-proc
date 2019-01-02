@@ -2,7 +2,7 @@
 
 ![image]()
 
-Run multiple command line operations at the same time. For example, if you want to run your express server alongside the Vue frontend, you could use this package to run both from the same terminal instance. 
+Run multiple command line operations at the same time. For example, if you want to run your Express backend alongside the Vue frontend, you could use this package to run both from the same terminal instance. 
 
 This package was written in `Typescript`, so there is no need to install typings for it.
 
@@ -16,7 +16,7 @@ This was developed and tested on only `OSX` and `*nix`. Windows has not been tes
 You can install it locally or globally:
 
 ```bash
-# Global
+# Global (Recommended)
 npm install -g multi-proc
 yarn global add multi-proc
 
@@ -33,7 +33,7 @@ Generate a configuration file using the `init` command
 multi-proc init
 ```
 
-This will generate a file in the working directory called `config.multi-proc.json`. ___Paths in this file are not relative to the config file, but where it is used from___. This mean's [yarn's `--cwd` option](https://github.com/intelliot/website/blob/a18297ad12b3ba3833372ffb529239a9d5953b1a/lang/en/docs/cli/install.md#yarn-install---cwd-path-) and [npm's `--prefix` option](https://stackoverflow.com/questions/36172442/how-to-npm-start-at-a-different-directory#answer-41772105) come in handy.
+This will generate a file in the working directory called `config.multi-proc.json`. ___Paths in this file are not relative to the config file, but to the working directory when the command is called___. This mean's [yarn's `--cwd` option](https://github.com/intelliot/website/blob/a18297ad12b3ba3833372ffb529239a9d5953b1a/lang/en/docs/cli/install.md#yarn-install---cwd-path-) and [npm's `--prefix` option](https://stackoverflow.com/questions/36172442/how-to-npm-start-at-a-different-directory#answer-41772105) come in handy.
 
 ```json
 [
