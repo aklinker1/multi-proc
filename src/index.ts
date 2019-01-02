@@ -14,10 +14,10 @@ CLI.command('init')
 CLI.command('start')
   .alias('s')
   .description('Start the main processes by running their defined "start" script in the config')
-  .option(
-    '-f --filter <name-regex>',
-    'Filter and only show logs from any process who\'s name matches the regex'
-  )
+  // .option(
+  //   '-f --filter <name-regex>',
+  //   'Filter and only show logs from any process who\'s name matches the regex'
+  // )
   .action(Actions.start(CLI));
 
 CLI.parse(process.argv);
