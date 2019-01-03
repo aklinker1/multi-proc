@@ -20,7 +20,7 @@ export default class Actions {
   }
 
   public static start = (CLI: CommanderStatic) => async (commandOptions: any): Promise<void> => {
-    const config = Actions.readConfig(CLI.config || 'config.multi-proc.js', commandOptions.filter);
+    const config = Actions.readConfig(CLI.config || 'config.multi-proc.json', commandOptions.filter);
     console.log(color(`${config.length} Process${config.length === 1 ? '' : 'es'} in ${CLI.config}`, Color.BOLD));
     console.log(`Working directory: ${color(`[${Actions.pwd}]`, Color.DIM)}\n`);
 
