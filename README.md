@@ -2,11 +2,11 @@
 
 Run multiple command line operations at the same time. For example, if you want to run your Express backend alongside the Vue frontend, you could use this package to run both from the same terminal instance, and view both logs at the same time.
 
-![GIF of multi-proc in action](https://user-images.githubusercontent.com/10101283/50580422-69e50280-0e1c-11e9-8ffc-6402cb05afe1.gif)
+![multi-proc in action](https://user-images.githubusercontent.com/10101283/50622981-96158780-0edf-11e9-9141-e3c671b97211.gif)
 
-Other Comments:
+#### Windows:
 
-- This was developed and tested on only `OSX` and `*nix`. Windows has not been tested.
+This was developed and tested on only `OSX` and `*nix`. Windows has not been tested, but it should work with cmd syntax for commands. Cannot guarantee it.
 
 ## Usage
 
