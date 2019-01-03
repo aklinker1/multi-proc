@@ -1,4 +1,4 @@
-import { ChildProcess, spawn } from 'child_process';
+import { ChildProcess, spawn, SpawnOptions } from 'child_process';
 import { join } from 'path';
 import Actions, { InputNodeProcess } from './Actions';
 import { Color, color as asColor } from './Colors';
@@ -7,7 +7,10 @@ export default class NodeProcess {
 
   public static start = async (proc: NodeProcess): Promise<void> => {
     return new Promise((resolve, reject) => {
-      const spawnOptions = { shell: proc.command.search(/(&&|;)/) >= 0, cwd: proc.directory };
+      const spawnOptions: SpawnOptions = {
+        cwd: proc.directory,
+        shell: proc.command.search(/(&&|;)/) >= 0,
+      };
       const startMessageArray = [`${asColor('Starting: ', Color.BOLD)}${proc.command}`];
       if (spawnOptions.cwd) {
         startMessageArray.push(asColor(`in ${spawnOptions.cwd}`, Color.DIM));
