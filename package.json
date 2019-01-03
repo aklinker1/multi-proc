@@ -1,12 +1,26 @@
 {
   "name": "multi-proc",
   "version": "1.0.3",
-  "description": "Simple package to allow running multiple node packages at the same time.",
-  "main": "index.js",
+  "description": "Run  multiple processes and view their output combined in a single terminal",
+  "keywords": [
+    "process",
+    "concurent",
+    "multiple",
+    "multi",
+    "multi-process"
+  ],
   "repository": "git+https://github.com/aklinker1/multi-proc.git",
   "author": "Aaron Klinker <aaronklinker1@gmail.com>",
+  "homepage": "https://github.com/aklinker1/multi-proc#readme",
   "license": "MIT",
   "private": false,
+  "bugs": {
+    "url": "https://github.com/aklinker1/multi-proc/issues"
+  },
+  "os": [
+    "!win32"
+  ],
+  "main": "index.js",
   "scripts": {
     "start": "./index.js",
     "build": "yarn compile && yarn lint",
