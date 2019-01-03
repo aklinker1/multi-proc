@@ -12,7 +12,6 @@
     "build": "yarn compile && yarn lint",
     "compile": "rm -rf lib/* && echo \"export default '$(node -p require\\(\\'./package.json\\'\\).version)';\" > src/version.ts && tsc",
     "lint": "tslint -p .",
-    "publish": "",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",

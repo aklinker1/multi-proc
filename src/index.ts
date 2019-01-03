@@ -4,14 +4,16 @@ import version from './version';
 
 CLI.description('Run multiple node commands in parallel, and see the output')
   .version(version, '-v --version')
-  .option('-c --config <config-file>', 'Specify a configiguration. defaults to "config.multi-proc.json');
+  .option(
+    '-c --config <config-file>', 'Specify a configiguration. defaults to "config.multi-proc.json" if not included'
+  );
 
 CLI.command('init')
-  .description('Start the main processes by running their defined "start" script in the config')
+  .description('Create a config.multi-proc.json configuration file')
   .action(Actions.init);
 
 CLI.command('start')
-  .description('Start the main processes by running their defined "start" script in the config')
+  .description('Start the main processes by running their "command" property')
   .option(
     '-f --filter <tag-regex>',
     'Filter and only show logs from any process who\'s name matches the regexprovided'
