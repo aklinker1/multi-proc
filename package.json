@@ -1,6 +1,6 @@
 {
   "name": "multi-proc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple package to allow running multiple node packages at the same time.",
   "main": "index.js",
   "repository": "git+https://github.com/aklinker1/multi-proc.git",
