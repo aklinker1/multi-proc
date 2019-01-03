@@ -73,7 +73,7 @@ module.exports = [
 This is the string that is displayed in the terminal output at the beginning of the line when the process prints a line.
 
 #### `color`
-This is the colorization of the `tag` when the process outputs a message. Any of the enum names [here](https://github.com/aklinker1/multi-proc/master/src/Colors.ts#L4), such as `"BLUE"`, `"BG_RED"`, `"UNDERSCORE"`, are valid options.
+This is the colorization of the `tag` when the process outputs a message. Any of the enum names [here](https://github.com/aklinker1/multi-proc/blob/21c7f784a187f3467555dbc14d85a612a0eefb7c/src/Colors.ts#L3), such as `"BLUE"`, `"BG_RED"`, `"UNDERSCORE"`, are valid options.
 
 #### `command`
 
