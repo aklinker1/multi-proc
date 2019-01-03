@@ -10,7 +10,6 @@ Other Comments:
 
 ## Usage
 
-
 ### Installation
 
 You can install it locally or globally:
@@ -25,7 +24,7 @@ npm install multi-proc
 yarn add multi-proc
 ```
 
-Globally would a be a pretty good move if you want to use it outside of a project, so you wouldn't have to create a package.json becore using it.
+Globally would a be a pretty good move if you want to use it outside of a project, so you wouldn't have to create a `package.json` before using it.
 
 ### Configuration
 
@@ -54,7 +53,7 @@ This will generate a file in the working directory called `config.multi-proc.jso
 ]
 ```
 
-This file could also be a `.js` file as well.
+This file could also be a `.js` file as well:
 
 ```js
 // config.multi-proc.js
@@ -78,15 +77,15 @@ This is the colorization of the `tag` when the process outputs a message. Any of
 
 #### `command`
 
-Specify the command to start each process. This doesn't have to be a node command, could be any bash command. Be careful when you have to escape characters.
+Specify the command to start each process. This doesn't have to start a node script, could be any bash command. Be careful when you have to escape characters.
 
-```bash
-cd some/directory && yarn start
+```json
+"command": "cd some/directory && yarn start"
 ``` 
 
 #### `directory`
 
-Specify the working directory for the `command` to run from. This path should be relative to where the command is used from. 
+Specify the working directory for the `"command"` to run from. This path should be relative to where the command is used from.
 
 ### Running
 
