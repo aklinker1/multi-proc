@@ -1,6 +1,6 @@
 {
   "name": "multi-proc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Run  multiple processes and view their output combined in a single terminal",
   "keywords": [
     "process",
