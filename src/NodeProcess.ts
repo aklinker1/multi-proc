@@ -58,7 +58,10 @@ export default class NodeProcess {
   }
 
   public output = (message: string): void => {
-    console.log(`${this.tag}${message.trim()}`);
+    const lines = message.trim().split('\n');
+    for (const line of lines) {
+      console.log(`${this.tag}${line.trim()}`);
+    }
   }
 
   public getTag = (proc: InputNodeProcess, maxWidth: number): string => {
