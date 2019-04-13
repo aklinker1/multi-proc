@@ -18,7 +18,7 @@ export default class NodeProcess {
       if (spawnOptions.shell) {
         startMessageArray.push(asColor(`(as a shell)`, Color.DIM));
       }
-      proc.output(startMessageArray.join(' '));
+      proc.log(startMessageArray.join(' '));
       let spawned: ChildProcess;
       if (spawnOptions.shell) {
         spawned = spawn(proc.command, spawnOptions);
@@ -30,13 +30,18 @@ export default class NodeProcess {
       spawned.addListener('close', () => resolve());
       spawned.addListener('disconnect', () => resolve());
       spawned.addListener('exit', () => {
-        proc.output(asColor('Finished!', Color.BOLD));
+        proc.log(asColor('Finished!', Color.BOLD));
         resolve();
       });
       spawned.addListener('err', (err: Error) => reject(err));
       spawned.stdout.addListener('data', (chunk: any) => {
         if (!proc.filter || proc.filter.exec(proc.tag)) {
-          proc.output(chunk.toString());
+          proc.log(chunk.toString());
+        }
+      });
+      spawned.stderr.addListener('data', (chunk: any) => {
+        if (!proc.filter || proc.filter.exec(proc.tag)) {
+          proc.log(chunk.toString());
         }
       });
     });
@@ -60,10 +65,17 @@ export default class NodeProcess {
     }
   }
 
-  public output = (message: string): void => {
+  public log = (message: string): void => {
     const lines = message.trim().split('\n');
     for (const line of lines) {
       console.log(`${this.tag}${line.trim()}`);
+    }
+  }
+
+  public error = (message: string): void => {
+    const lines = message.trim().split('\n');
+    for (const line of lines) {
+      console.log(`${asColor(this.tag, Color.BG_RED, Color.UNDERLINE, Color.WHITE)}${line.trim()}`);
     }
   }
 

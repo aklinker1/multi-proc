@@ -34,7 +34,7 @@ Globally would a be a pretty good move if you want to use it outside of a projec
 multi-proc init
 ```
 
-This will generate a file in the working directory called `config.multi-proc.json`. ___Paths in this file are not relative to the config file, but to the working directory when the command is called___.
+This will generate a file in the working directory called `multi-proc.config.json`. ___Paths in this file are not relative to the config file, but to the working directory when the command is called___.
 
 ```json
 [
@@ -56,7 +56,7 @@ This will generate a file in the working directory called `config.multi-proc.jso
 This file could also be a `.js` file as well:
 
 ```js
-// config.multi-proc.js
+// multi-proc.config.js
 module.exports = [
   {
     tag: "Process 1",
@@ -90,7 +90,7 @@ Specify the working directory for the `"command"` to run from. This path should 
 ### Running
 
 ```bash
-# Run the processes in config.multi-proc.json
+# Run the processes in multi-proc.config.json
 multi-proc start
 
 # Filter and only output tags that match regex
@@ -117,9 +117,9 @@ $ ls
 $ cd vue-frontend
 
 $ ls
-... config.multi-proc.json ... package.json ...
+... multi-proc.config.json ... package.json ...
 
-$ cat config.multi-proc.json
+$ cat multi-proc.config.json
 [
   {
     "tag": "Express",
@@ -144,9 +144,9 @@ $ pwd
 /home/aaron/programming
 
 $ ls
-node-project-1/  node-project-2/  config.multi-proc.json
+node-project-1/  node-project-2/  multi-proc.config.json
 
-$ cat config.multi-proc.json
+$ cat multi-proc.config.json
 [
   {
     "tag": "Process 1",
@@ -168,5 +168,5 @@ $ pwd
 
 # Note because this isn't running in /home/aaron/programming, I had to add programming/* for the directory on the node-project-1 process and the cd for the node-project-2 process
 # Paths in the config need to be relative to where the command is called from
-$ multi-proc --config programming/config.multi-proc.json start
+$ multi-proc --config programming/multi-proc.config.json start
 ```

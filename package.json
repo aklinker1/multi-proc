@@ -29,7 +29,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "example": "yarn start --config example/config.multi-proc.json start",
+    "example": "yarn start --config example/multi-proc.config.json start",
     "prepublish": "yarn build"
   },
   "bin": "./index.js",

@@ -5,11 +5,11 @@ import version from './version';
 CLI.description('Run multiple node commands in parallel, and see the output')
   .version(version, '-v --version')
   .option(
-    '-c --config <config-file>', 'Specify a configiguration. defaults to "config.multi-proc.json" if not included'
+    '-c --config <config-file>', 'Specify a configiguration. defaults to "multi-proc.config.json" if not included'
   );
 
 CLI.command('init')
-  .description('Create a config.multi-proc.json configuration file')
+  .description('Create a multi-proc.config.json configuration file')
   .action(Actions.init);
 
 CLI.command('start')
